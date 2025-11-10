@@ -1,0 +1,37 @@
+import React, { useEffect, useState } from "react";
+import useAxios from "../../Hooks/useAxios";
+import Habit from "./Habit";
+
+const Habites = () => {
+  const [habits, setHabits] = useState([]);
+  const axios = useAxios();
+
+  useEffect(() => {
+    const fetchHabits = async () => {
+      try {
+        const res = await axios.get("/habits");
+        setHabits(res.data);
+      } catch (err) {
+        console.log("Error fetching habits:", err);
+      }
+    };
+    return () => {
+      fetchHabits();
+    };
+  }, [axios]);
+
+  const habitsSlice = habits.slice(0, 6);
+
+  return (
+    <div className="container mx-auto">
+      <h2 className="text-[#03045E] font-bold text-3xl text-center py-10">Habites</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2">
+        {habitsSlice.map((habit) => (
+          <Habit key={habit._id} habit={habit}></Habit>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Habites;
