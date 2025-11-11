@@ -74,6 +74,20 @@ const My_Habit_Table = () => {
     });
   };
 
+  const handleMarkComplete = async (id) => {
+    try {
+      await axios.patch(`/habits/${id}/complete`);
+      toast.success("Habit marked as complete successfully!");
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        toast.error("You have already marked this habit complete today!");
+      } else {
+        toast.error("Failed to mark habit as complete!");
+      }
+    }
+  };
+
+
   return (
     <>
       <div className="max-w-7xl mt-17 mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,7 +136,7 @@ const My_Habit_Table = () => {
                       >
                         Delete
                       </button>
-                      <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition">
+                      <button onClick={() => handleMarkComplete(habit._id)} className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition">
                         Complete
                       </button>
                     </td>
@@ -139,13 +153,11 @@ const My_Habit_Table = () => {
       <dialog id="my_modal_1" ref={productRef} class="modal">
         <div class="modal-box">
           <form onSubmit={handleSubmit} className="space-y-1">
-            {" "}
             <div>
-              {" "}
               <label className="block font-semibold text-gray-700 mb-1">
-                {" "}
-                Habit Title{" "}
-              </label>{" "}
+
+                Habit Title
+              </label>
               <input
                 type="text"
                 name="title"
@@ -153,113 +165,96 @@ const My_Habit_Table = () => {
                 defaultValue={Modalhabit?.Title}
                 className="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00B4D8] outline-none"
                 required
-              />{" "}
-            </div>{" "}
+              />
+            </div>
             <div>
-              {" "}
               <label className="block font-semibold text-gray-700 mb-1">
-                {" "}
-                Description{" "}
-              </label>{" "}
+                Description
+              </label>
               <textarea
                 name="description"
                 rows="3"
                 placeholder="Describe your habit..."
                 defaultValue={Modalhabit?.Description}
                 className="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00B4D8] outline-none"
-              ></textarea>{" "}
-            </div>{" "}
+              ></textarea>
+            </div>
             <div>
-              {" "}
               <label className="block font-semibold text-gray-700 mb-1">
-                {" "}
-                Category{" "}
-              </label>{" "}
+                Category
+              </label>
               <select
                 name="category"
                 className="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00B4D8] outline-none"
                 required
                 value={Modalhabit?.Category}
               >
-                {" "}
-                <option value="">Select Category</option>{" "}
-                <option value="Morning">Morning</option>{" "}
-                <option value="Work">Work</option>{" "}
-                <option value="Fitness">Fitness</option>{" "}
-                <option value="Evening">Evening</option>{" "}
-                <option value="Study">Study</option>{" "}
-              </select>{" "}
-            </div>{" "}
+                <option value="">Select Category</option>
+                <option value="Morning">Morning</option>
+                <option value="Work">Work</option>
+                <option value="Fitness">Fitness</option>
+                <option value="Evening">Evening</option>
+                <option value="Study">Study</option>
+              </select>
+            </div>
             <div>
-              {" "}
               <label className="block font-semibold text-gray-700 mb-1">
-                {" "}
-                Reminder Time{" "}
-              </label>{" "}
+                Reminder Time
+              </label>
               <input
                 type="time"
                 name="reminderTime"
                 className="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00B4D8] outline-none"
                 defaultValue={Modalhabit?.ReminderTime}
-              />{" "}
-            </div>{" "}
+              />
+            </div>
             <div>
-              {" "}
               <label className="block font-semibold text-gray-700 mb-1">
-                {" "}
-                Image URL{" "}
-              </label>{" "}
+                Image URL
+              </label>
               <input
                 type="text"
                 name="image"
                 placeholder="Image URL"
                 className="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00B4D8] outline-none"
                 defaultValue={Modalhabit?.Image}
-              />{" "}
-            </div>{" "}
+              />
+            </div>
             <div className="grid md:grid-cols-2 gap-4">
-              {" "}
               <div>
-                {" "}
                 <label className="block font-semibold text-gray-700 mb-1">
-                  {" "}
-                  User Name{" "}
-                </label>{" "}
+                  User Name
+                </label>
                 <input
                   type="text"
                   value={user?.displayName || ""}
                   readOnly
                   className="w-full p-2 rounded-lg border border-gray-300 bg-gray-100 cursor-not-allowed"
-                />{" "}
-              </div>{" "}
+                />
+              </div>
               <div>
-                {" "}
                 <label className="block font-semibold text-gray-700 mb-1">
-                  {" "}
-                  User Email{" "}
-                </label>{" "}
+                  User Email
+                </label>
                 <input
                   type="email"
                   value={user?.email || ""}
                   readOnly
                   className="w-full p-2 rounded-lg border border-gray-300 bg-gray-100 cursor-not-allowed"
-                />{" "}
-              </div>{" "}
-            </div>{" "}
+                />
+              </div>
+            </div>
             <div className="flex justify-between mt-3">
-              {" "}
               <button
                 type="submit"
                 className="py-2 w-1/2 bg-linear-to-r from-[#00B4D8] to-[#0077B6] text-white font-semibold rounded-lg hover:scale-[1.02] transition-transform"
               >
-                {" "}
-                Add Habit{" "}
-              </button>{" "}
+                Add Habit
+              </button>
               <form method="dialog">
-                {" "}
-                <button className="btn">Close</button>{" "}
-              </form>{" "}
-            </div>{" "}
+                <button className="btn">Close</button>
+              </form>
+            </div>
           </form>
         </div>
       </dialog>

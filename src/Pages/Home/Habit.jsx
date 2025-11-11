@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router';
+import React from "react";
+import { Link } from "react-router";
 
-const Habit = ({habit}) => {
-    const habitDisk = habit.Description.slice(0, 40) + "...";
-return (
+const Habit = ({ habit }) => {
+  const habitDisk = habit.Description.slice(0, 40) + "...";
+  return (
     <div className="bg-white p-2 py-4 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
       <img
         src={habit.Image}
@@ -11,8 +11,14 @@ return (
         className="w-full h-64 rounded-xl object-cover"
       />
       <div className="p-2">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2">{habit.Title}</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          {habit.Title}
+        </h2>
         <p className="text-gray-600 mb-4">{habitDisk}</p>
+      </div>
+
+      <div>
+        <p className="p-2 text-gray-600">Creator Name : {habit.Username}</p>
       </div>
 
       <Link to={`/habitDetails/${habit._id}`}>
@@ -22,6 +28,6 @@ return (
       </Link>
     </div>
   );
-}
+};
 
-export default Habit
+export default Habit;
