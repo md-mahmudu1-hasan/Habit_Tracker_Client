@@ -1,15 +1,22 @@
 @import "tailwindcss";
 @plugin "daisyui";
-@import "slick-carousel/slick/slick.css"; 
+@import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
 
-
-@plugin "daisyui/theme"{
-  --color-primary: #03045E;
-  --color-primary-focus: #03045E;
-  --color-secondary: #023E8A;
-  --color-secondary-focus: #023E8A;
+@plugin "daisyui/theme" {
+  --color-primary: #03045e;
+  --color-primary-focus: #03045e;
+  --color-secondary: #023e8a;
+  --color-secondary-focus: #023e8a;
 }
-@theme{
+@theme {
   --breakpoint-md: 800px;
+}
+
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow: hidden;
+  font-family: "Merriweather", serif;
 }

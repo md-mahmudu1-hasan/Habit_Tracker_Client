@@ -175,7 +175,7 @@ const Login = () => {
 
   return (
     <div className="bg-[#e0f6fa] mt-17">
-      <div className="w-full md:w-1/2 mx-auto flex items-center justify-center py-6 rounded-2xl bg-linear-to-br from-[#0096C7] via-[#00B4D8] to-[#48CAE4]">
+      <div className="w-full md:max-w-lg mx-auto flex items-center justify-center py-6 rounded-2xl bg-linear-to-br from-[#0096C7] via-[#00B4D8] to-[#48CAE4]">
         <div className="w-full max-w-md space-y-3">
           <div className="text-center">
             <div className="w-12 h-12 bg-[#ADE8F4] rounded-xl flex items-center justify-center mx-auto mb-3">

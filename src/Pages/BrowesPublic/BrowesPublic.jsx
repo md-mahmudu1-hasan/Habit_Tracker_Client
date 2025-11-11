@@ -22,13 +22,15 @@ const BrowesPublic = () => {
 
 
   return (
-    <div className='bg-[#e0f6fa] pt-17'> 
+    <div className='bg-[#e0f6fa]'>
+    <div className=' pt-17 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'> 
         <h2 className="text-[#03045E] font-bold text-3xl text-center py-10">Public Habits</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2">
             {habits.map((habit) => (
                 <Habit key={habit.id} habit={habit}></Habit>
             ))}
         </div>
+    </div>
     </div>
   )
 }
