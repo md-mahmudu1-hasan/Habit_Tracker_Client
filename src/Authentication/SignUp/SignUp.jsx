@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 
 const SignUp = () => {
-  const { createUser, googleSignIn, loading } = useAuth();
+  const { createUser, googleSignIn, loading , setUser } = useAuth();
 
   const navigate = useNavigate();
 
@@ -46,8 +46,8 @@ const SignUp = () => {
             toast.success("Sign up successfully");
             setSuccess(true);
             e.target.reset();
+            setUser({ ...result.user, displayName: name, photoURL: photoURL });
             navigate("/");
-            window.location.reload();
           })
           .catch((error) => {
             if (error.code === "auth/invalid-photo-url") {

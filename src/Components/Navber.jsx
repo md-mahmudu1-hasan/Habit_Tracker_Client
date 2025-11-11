@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router";
 import useAuth from "../Hooks/useAuth";
 import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, SignOut } = useAuth();
-  const [photo, setPhoto] = useState("");
-  const [load,setload] = useState(false)
-
-  useEffect(() => {
-    setload(true);
-    const photo = user?.photoURL;
-    setPhoto(photo);
-    setload(false);
-  }, [user]);
+  const { user, SignOut, loading } = useAuth();
 
   const handleLogout = () => {
     SignOut()
@@ -24,12 +15,8 @@ const Navbar = () => {
       .catch(() => {});
   };
 
-  if (load) {
-    return <p>Loading...</p>;
-  }
-
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 shadow-lg rounded-lg bg-gradient-to-r from-[#00B4D8]/70 via-[#48CAE4]/70 to-[#90E0EF]/70">
+    <nav className="fixed top-0 left-0 w-full z-50 shadow-lg rounded-lg bg-linear-to-r from-[#00B4D8]/70 via-[#48CAE4]/70 to-[#90E0EF]/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center text-white">
           <div className="shrink-0 text-2xl font-bold">
@@ -75,7 +62,7 @@ const Navbar = () => {
             </>
           </div>
 
-          {load ? (
+          {loading ? (
             <span>loading...</span>
           ) : (
             <div className="hidden md:flex space-x-4">
@@ -100,7 +87,8 @@ const Navbar = () => {
                     <div tabIndex={0} role="button" className="m-1">
                       <img
                         className="w-10 h-10 object-cover rounded-full"
-                        src={photo}
+                        referrerPolicy="no-referrer"
+                        src={user?.photoURL}
                         alt={user?.displayName}
                       />{" "}
                     </div>

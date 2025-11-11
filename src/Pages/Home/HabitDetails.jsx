@@ -15,14 +15,9 @@ const HabitDetails = () => {
       try {
         const res = await axios.get(`/habits/${id}`);
         setHabit(res.data);
-
-        // Example calculation for progress & streak
-        // Assume habit.completedDaysLast30 = array of booleans length 30
         if (res.data.completedDaysLast30) {
           const completedDays = res.data.completedDaysLast30.filter(d => d).length;
           setProgress(Math.round((completedDays / 30) * 100));
-
-          // Streak: consecutive completed days from last day
           let currentStreak = 0;
           for (let i = res.data.completedDaysLast30.length - 1; i >= 0; i--) {
             if (res.data.completedDaysLast30[i]) currentStreak++;
@@ -44,7 +39,6 @@ const HabitDetails = () => {
   const handleMarkComplete = async () => {
     try {
       const res = await axios.post(`/habits/${id}/complete`);
-      // Update habit progress after marking complete
       setHabit(res.data);
       if (res.data.completedDaysLast30) {
         const completedDays = res.data.completedDaysLast30.filter(d => d).length;

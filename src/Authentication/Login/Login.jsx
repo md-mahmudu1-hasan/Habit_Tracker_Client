@@ -117,7 +117,7 @@ const GoogleIcon = () => (
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn, googleSignIn, loading } = useAuth();
+  const { signIn, googleSignIn } = useAuth();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");

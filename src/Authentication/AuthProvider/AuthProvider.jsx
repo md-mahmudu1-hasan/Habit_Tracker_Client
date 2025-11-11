@@ -53,6 +53,7 @@ const googleSignIn = () => {
     resetPassword,
     googleSignIn,
     setLoading,
+    setUser,
   };
   return (
     <div>
