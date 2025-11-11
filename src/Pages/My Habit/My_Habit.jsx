@@ -11,6 +11,7 @@ const My_Habit_Table = () => {
   const productRef = useRef(null);
   const [Modalhabit, setModalhabit] = useState({});
 
+
   useEffect(() => {
     axios.get(`/habits?email=${user?.email}`).then((res) => {
       setHabits(res.data);
@@ -39,6 +40,7 @@ const My_Habit_Table = () => {
       }
     });
   };
+
 
   const handleModal = (id) => {
     productRef.current.showModal();
@@ -87,7 +89,6 @@ const My_Habit_Table = () => {
     }
   };
 
-
   return (
     <>
       <div className="max-w-7xl mt-17 mx-auto px-4 sm:px-6 lg:px-8">
@@ -118,7 +119,7 @@ const My_Habit_Table = () => {
                     <td className="py-3 px-6">{habit.Title}</td>
                     <td className="py-3 px-6">{habit.Category}</td>
                     <td className="py-3 px-6">
-                      {habit.CurrentStreak || 0} days
+                      {habit?.completedDates?.length} day
                     </td>
                     <td className="py-3 px-6">
                       {new Date(habit.createAt).toLocaleDateString()}
@@ -137,7 +138,7 @@ const My_Habit_Table = () => {
                         Delete
                       </button>
                       <button onClick={() => handleMarkComplete(habit._id)} className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition">
-                        Complete
+                        Mark Complete
                       </button>
                     </td>
                   </tr>
