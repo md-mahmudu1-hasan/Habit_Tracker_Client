@@ -16,15 +16,13 @@ const AddHabit = () => {
          ReminderTime: e.target.reminderTime.value,
          Image: e.target.image.value,
          createAt: new Date().toISOString(),
-         Creator:{
-            name: user?.displayName,
-            email: user?.email,
-            image: user?.photoURL
-         } 
+         Username: user?.displayName,
+         UserEmail: user?.email,
+         UserImage: user?.photoURL
       };
 
       axios.post("/habits", habitData).then((res) => {
-         console.log(res.data);
+         e.target.reset();
          toast.success("Habit added successfully");
       })
    };

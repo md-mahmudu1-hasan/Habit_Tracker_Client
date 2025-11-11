@@ -60,6 +60,14 @@ export const route = createBrowserRouter([
           </PrivetRoute>
         ),
       },
+      {
+        path:"/my-habits",
+        element:(
+          <PrivetRoute>
+            <My_Habit></My_Habit>
+          </PrivetRoute>
+        )
+      }
     ],
   },
 ]);
