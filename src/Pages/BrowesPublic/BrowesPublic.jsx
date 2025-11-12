@@ -18,7 +18,6 @@ const BrowesPublic = () => {
     fetch("/Loading 40 _ Paperplane.json")
       .then((res) => res.json())
       .then((data) => setAnimationData(data))
-      .catch((err) => console.log("Error loading animation:", err));
   }, []);
 
   useEffect(() => {
@@ -28,7 +27,6 @@ const BrowesPublic = () => {
         setHabits(res.data);
         setLoading(false);
       } catch (err) {
-        console.log("Error fetching habits:", err);
         setLoading(false);
       }
     };

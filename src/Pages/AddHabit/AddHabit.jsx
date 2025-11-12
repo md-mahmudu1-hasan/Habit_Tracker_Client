@@ -30,7 +30,6 @@ const AddHabit = () => {
     e.target.reset();
     toast.success("Habit added successfully");
   } catch (err) {
-    console.error("Error adding habit:", err);
     toast.error("Failed to add habit");
   } finally {
     setLoading(false);

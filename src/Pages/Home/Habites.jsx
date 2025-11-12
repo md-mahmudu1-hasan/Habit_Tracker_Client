@@ -18,7 +18,6 @@ const Habites = () => {
         setHabits(res.data);
         setLoading(false);
       } catch (err) {
-        console.log("Error fetching habits:", err);
         setLoading(false);
       }
     };
@@ -38,7 +37,7 @@ const Habites = () => {
   {habitsSlice.map((habit, index) => (
     <motion.div
       key={habit._id}
-      variants={fadeIn("up", index * 0.2)} // staggered delay
+      variants={fadeIn("up", index * 0.2)}
       initial="hidden"
       whileInView="show"
       viewport={{ once: false, amount: 0.3 }}

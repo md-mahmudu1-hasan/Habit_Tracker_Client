@@ -48,7 +48,6 @@ const My_Habit_Table = () => {
     productRef.current.showModal();
     axios.get(`/habits/${id}`).then((res) => {
       setModalhabit(res.data);
-      console.log(res.data);
     });
   };
 

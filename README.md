@@ -1,16 +1,28 @@
-# React + Vite
+# Habit Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Site:
 
-Currently, two official plugins are available:
+ Technologies & Packages Used :
+- **React**: ^19.2.0  
+- **React DOM**: ^19.1.1  
+- **React Router**: ^7.9.5  
+- **Tailwind CSS**: ^4.1.17  
+- **@tailwindcss/vite**: ^4.1.17  
+- **Axios**: ^1.13.2  
+- **Firebase**: ^12.5.0  
+- **Framer Motion**: ^12.23.24  
+- **Lottie React**: ^2.4.1  
+- **Lucide & Lucide React**: ^0.553.0  
+- **React Hot Toast**: ^2.6.0  
+- **React Icons**: ^5.5.0  
+- **React Slick & Slick Carousel**: ^0.31.0 & ^1.8.1  
+- **SweetAlert2**: ^11.26.3  
+- **Seraui**: ^0.0.2  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Key Features :
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Users can **create, track, and manage daily habits**.  
+- Add habits with **category, reminder time, and optional image upload**.  
+- **My Habits table** with update, delete, and mark complete options.  
+- Browse **public habits** with search and category filter.  
+- Track progress with **progress bars and streak badges**.  
