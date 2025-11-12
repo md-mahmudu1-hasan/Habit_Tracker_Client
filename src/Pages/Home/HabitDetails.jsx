@@ -30,8 +30,14 @@ const HabitDetails = () => {
 
     try {
       const res = await axios.patch(`/habits/${id}/complete`);
-      setHabit(res.data);
-      toast.success("Habit marked complete!");
+      setHabit((prev) => ({
+        ...prev,
+        streak: res.data.streak,
+        completedDates: res.data.completedDates,
+        progress: res.data.progress,
+      }));
+
+      toast.success(res.data.message || "Habit marked complete!");
     } catch (err) {
       toast.error(err.response?.data?.message || "Failed to mark complete");
     }

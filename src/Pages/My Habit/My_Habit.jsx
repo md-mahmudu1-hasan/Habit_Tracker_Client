@@ -78,33 +78,21 @@ const My_Habit_Table = () => {
     });
   };
 
-  const handleMarkComplete = async (id) => {
-    try {
-      const today = new Date().toISOString().split("T")[0];
-
-      await axios.patch(`/habits/${id}/complete`);
-
-      setHabits((prevHabits) =>
-        prevHabits.map((habit) => {
-          if (habit._id === id) {
-            const updatedDates = habit.completedDates
-              ? [...habit.completedDates, today]
-              : [today];
-            return { ...habit, completedDates: updatedDates };
-          }
-          return habit;
-        })
-      );
-
-      toast.success("Habit marked as complete successfully!");
-    } catch (error) {
-      if (error.response && error.response.status === 400) {
-        toast.error("You have already marked this habit complete today!");
-      } else {
-        toast.error("Failed to mark habit as complete!");
-      }
-    }
-  };
+const handleMarkComplete = async (id) => {
+  try {
+    const res = await axios.patch(`/habits/${id}/complete`);
+    setHabits(prevHabits =>
+      prevHabits.map(habit =>
+        habit._id === id
+          ? { ...habit, streak: res.data.streak, completedDates: res.data.completedDates }
+          : habit
+      )
+    );
+    toast.success(res.data.message || "Habit marked complete!");
+  } catch (err) {
+    toast.error(err.response?.data?.message || "Failed to mark complete");
+  }
+};
 
   if (loading) return <Loader></Loader>;
 
@@ -138,7 +126,7 @@ const My_Habit_Table = () => {
                     <td className="py-3 px-6">{habit.Title}</td>
                     <td className="py-3 px-6">{habit.Category}</td>
                     <td className="py-3 px-6">
-                      {habit?.completedDates?.length || 0} days
+                      {habit?.streak || 0} day{habit?.streak !== 1 ? "s" : ""}
                     </td>
                     <td className="py-3 px-6">
                       {new Date(habit.createAt).toLocaleDateString()}
