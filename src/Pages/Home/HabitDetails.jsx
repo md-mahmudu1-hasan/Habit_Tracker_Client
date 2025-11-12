@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import Loader from "../Loader/Loader";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../Utilities/Varients";
 
 const HabitDetails = () => {
   const { id } = useParams();
@@ -48,7 +50,13 @@ const HabitDetails = () => {
     return <p className="text-center text-gray-500 mt-10">Habit not found</p>;
 
   return (
-    <div className="bg-[#e0f6fa] min-h-screen py-10">
+    <motion.div
+      className="bg-[#e0f6fa] min-h-screen py-10"
+      variants={fadeIn("up", 0.3)}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.3 }}
+    >
       <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-lg">
         <img
           src={habit.Image}
@@ -111,7 +119,7 @@ const HabitDetails = () => {
           Mark Complete
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

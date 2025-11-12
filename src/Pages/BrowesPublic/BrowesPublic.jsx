@@ -3,6 +3,8 @@ import useAxios from "../../Hooks/useAxios";
 import Habit from "../Home/Habit";
 import Lottie from "lottie-react";
 import Loader from "../Loader/Loader";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../Utilities/Varients";
 
 const BrowesPublic = () => {
   const axios = useAxios();
@@ -11,7 +13,6 @@ const BrowesPublic = () => {
   const [filterCategory, setFilterCategory] = useState("All");
   const [animationData, setAnimationData] = useState(null);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     fetch("/Loading 40 _ Paperplane.json")
@@ -43,7 +44,7 @@ const BrowesPublic = () => {
     return matchesSearch && matchesCategory;
   });
 
-  if (loading) return <Loader></Loader>
+  if (loading) return <Loader></Loader>;
 
   return (
     <div className="bg-[#e0f6fa]">
@@ -87,7 +88,14 @@ const BrowesPublic = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2">
           {filteredHabits.length > 0 ? (
             filteredHabits.map((habit) => (
-              <Habit key={habit._id} habit={habit}></Habit>
+              <motion.div
+                variants={fadeIn("up", 0.3)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }}
+              >
+                <Habit key={habit._id} habit={habit}></Habit>
+              </motion.div>
             ))
           ) : (
             <p className="text-center text-gray-600">

@@ -1,4 +1,6 @@
 import { FaBrain, FaSmile, FaBullseye, FaHeart } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../Utilities/Varients";
 
 const WhyBuildHabits = () => {
   const benefits = [
@@ -25,7 +27,7 @@ const WhyBuildHabits = () => {
   ];
 
   return (
-    <section className="py-16">
+    <motion.section variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.3 }} className="py-16">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
           Why Build Habits?
@@ -50,7 +52,7 @@ const WhyBuildHabits = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

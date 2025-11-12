@@ -1,5 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../Utilities/Varients";
 
 const Review = () => {
   const reviews = [
@@ -24,7 +26,7 @@ const Review = () => {
   ];
 
   return (
-    <section className="bg-[#e0f6fa] py-16" id="reviews">
+    <motion.section variants={fadeIn("left", 0.3)} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.3 }} className="bg-[#e0f6fa] py-16" id="reviews">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
           What Our Users Say
@@ -57,7 +59,7 @@ const Review = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
