@@ -17,6 +17,8 @@ const Habit = ({ habit }) => {
         <p className="text-gray-600 mb-4">{habitDisk}</p>
       </div>
 
+      <p className="p-2 text-white text-center bg-[#65CFE6] rounded-2xl"> Streak : {habit?.completedDates?.length || 0} days</p>
+
       <div>
         <p className="p-2 text-gray-600">Creator Name : {habit.Username}</p>
       </div>

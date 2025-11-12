@@ -6,11 +6,10 @@ import Swal from "sweetalert2";
 
 const My_Habit_Table = () => {
   const [habits, setHabits] = useState([]);
+  const [Modalhabit, setModalhabit] = useState({});
   const axios = useAxios();
   const { user } = useAuth();
   const productRef = useRef(null);
-  const [Modalhabit, setModalhabit] = useState({});
-
 
   useEffect(() => {
     axios.get(`/habits?email=${user?.email}`).then((res) => {
@@ -40,7 +39,6 @@ const My_Habit_Table = () => {
       }
     });
   };
-
 
   const handleModal = (id) => {
     productRef.current.showModal();
@@ -78,7 +76,22 @@ const My_Habit_Table = () => {
 
   const handleMarkComplete = async (id) => {
     try {
+      const today = new Date().toISOString().split("T")[0];
+
       await axios.patch(`/habits/${id}/complete`);
+
+      setHabits((prevHabits) =>
+        prevHabits.map((habit) => {
+          if (habit._id === id) {
+            const updatedDates = habit.completedDates
+              ? [...habit.completedDates, today]
+              : [today];
+            return { ...habit, completedDates: updatedDates };
+          }
+          return habit;
+        })
+      );
+
       toast.success("Habit marked as complete successfully!");
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -119,7 +132,7 @@ const My_Habit_Table = () => {
                     <td className="py-3 px-6">{habit.Title}</td>
                     <td className="py-3 px-6">{habit.Category}</td>
                     <td className="py-3 px-6">
-                      {habit?.completedDates?.length} day
+                      {habit?.completedDates?.length || 0} days
                     </td>
                     <td className="py-3 px-6">
                       {new Date(habit.createAt).toLocaleDateString()}
@@ -137,7 +150,10 @@ const My_Habit_Table = () => {
                       >
                         Delete
                       </button>
-                      <button onClick={() => handleMarkComplete(habit._id)} className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition">
+                      <button
+                        onClick={() => handleMarkComplete(habit._id)}
+                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+                      >
                         Mark Complete
                       </button>
                     </td>
@@ -156,7 +172,6 @@ const My_Habit_Table = () => {
           <form onSubmit={handleSubmit} className="space-y-1">
             <div>
               <label className="block font-semibold text-gray-700 mb-1">
-
                 Habit Title
               </label>
               <input
