@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxios from "../../Hooks/useAxios";
 import Habit from "../Home/Habit";
 import Lottie from "lottie-react";
+import Loader from "../Loader/Loader";
 
 const BrowesPublic = () => {
   const axios = useAxios();
@@ -9,6 +10,8 @@ const BrowesPublic = () => {
   const [searchText, setSearchText] = useState("");
   const [filterCategory, setFilterCategory] = useState("All");
   const [animationData, setAnimationData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     fetch("/Loading 40 _ Paperplane.json")
@@ -22,8 +25,10 @@ const BrowesPublic = () => {
       try {
         const res = await axios.get("/habits");
         setHabits(res.data);
+        setLoading(false);
       } catch (err) {
         console.log("Error fetching habits:", err);
+        setLoading(false);
       }
     };
     fetchHabits();
@@ -37,6 +42,8 @@ const BrowesPublic = () => {
       filterCategory === "All" || habit.Category === filterCategory;
     return matchesSearch && matchesCategory;
   });
+
+  if (loading) return <Loader></Loader>
 
   return (
     <div className="bg-[#e0f6fa]">

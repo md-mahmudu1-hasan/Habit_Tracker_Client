@@ -1,31 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-hot-toast";
 import useAxios from "../../Hooks/useAxios";
+import Loader from "../Loader/Loader";
 
 const AddHabit = () => {
   const { user } = useAuth();
   const axios = useAxios();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const habitData = {
-      Title: e.target.title.value,
-      Description: e.target.description.value,
-      Category: e.target.category.value,
-      ReminderTime: e.target.reminderTime.value,
-      Image: e.target.image.value,
-      createAt: new Date().toISOString(),
-      Username: user?.displayName,
-      UserEmail: user?.email,
-      UserImage: user?.photoURL,
-    };
+  e.preventDefault();
+  setLoading(true);
 
-    axios.post("/habits", habitData).then(() => {
-      e.target.reset();
-      toast.success("Habit added successfully");
-    });
+  const habitData = {
+    Title: e.target.title.value,
+    Description: e.target.description.value,
+    Category: e.target.category.value,
+    ReminderTime: e.target.reminderTime.value,
+    Image: e.target.image.value,
+    createAt: new Date().toISOString(),
+    Username: user?.displayName,
+    UserEmail: user?.email,
+    UserImage: user?.photoURL,
   };
+
+  try {
+    await axios.post("/habits", habitData);
+    e.target.reset();
+    toast.success("Habit added successfully");
+  } catch (err) {
+    console.error("Error adding habit:", err);
+    toast.error("Failed to add habit");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+  if (loading) return <Loader></Loader>;
 
   return (
     <div className="bg-[#e0f6fa]">

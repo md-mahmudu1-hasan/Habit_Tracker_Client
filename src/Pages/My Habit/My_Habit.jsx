@@ -3,6 +3,7 @@ import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import Loader from "../Loader/Loader";
 
 const My_Habit_Table = () => {
   const [habits, setHabits] = useState([]);
@@ -10,10 +11,13 @@ const My_Habit_Table = () => {
   const axios = useAxios();
   const { user } = useAuth();
   const productRef = useRef(null);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     axios.get(`/habits?email=${user?.email}`).then((res) => {
       setHabits(res.data);
+      setLoading(false);
     });
   }, [axios, user]);
 
@@ -102,6 +106,8 @@ const My_Habit_Table = () => {
     }
   };
 
+  if (loading) return <Loader></Loader>;
+
   return (
     <>
       <div className="max-w-7xl mt-17 mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,7 +116,7 @@ const My_Habit_Table = () => {
         </h1>
 
         {habits.length === 0 ? (
-          <p className="text-center text-[#02449a]">No habits found</p>
+          <p className="text-center font-bold text-2xl text-[#02449a]">No habits found</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white shadow-md rounded-lg">

@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useNavigate, useLocation } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import Loader from "../../Pages/Loader/Loader";
 
 const ShieldIcon = () => (
   <svg
@@ -117,7 +118,7 @@ const GoogleIcon = () => (
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn, googleSignIn } = useAuth();
+  const { signIn, googleSignIn, loading } = useAuth();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
@@ -172,8 +173,12 @@ const Login = () => {
     }
   }, [error]);
 
+  if (loading) {
+    return <Loader></Loader>;
+  }
 
-  return (
+
+  return (    
     <div className="bg-[#e0f6fa] mt-17">
       <div className="w-full md:max-w-lg mx-auto flex items-center justify-center py-6 rounded-2xl bg-linear-to-br from-[#0096C7] via-[#00B4D8] to-[#48CAE4]">
         <div className="w-full max-w-md space-y-3">

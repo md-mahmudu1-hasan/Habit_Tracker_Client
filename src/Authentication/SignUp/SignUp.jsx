@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
+import Loader from "../../Pages/Loader/Loader";
 
 const SignUp = () => {
   const { createUser, googleSignIn, loading , setUser } = useAuth();
@@ -96,7 +97,7 @@ const SignUp = () => {
   }, [error]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loader></Loader>
   }
 
   const ShieldIcon = () => (

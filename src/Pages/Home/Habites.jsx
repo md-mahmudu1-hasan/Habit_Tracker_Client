@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import useAxios from "../../Hooks/useAxios";
 import Habit from "./Habit";
+import Loader from "../Loader/Loader";
 
 const Habites = () => {
   const [habits, setHabits] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const axios = useAxios();
 
   useEffect(() => {
@@ -11,8 +14,10 @@ const Habites = () => {
       try {
         const res = await axios.get("/habits");
         setHabits(res.data);
+        setLoading(false);
       } catch (err) {
         console.log("Error fetching habits:", err);
+        setLoading(false);
       }
     };
     return () => {
@@ -21,6 +26,8 @@ const Habites = () => {
   }, [axios]);
 
   const habitsSlice = habits.slice(0, 6);
+
+  if (loading) return <Loader></Loader>
 
   return (
     <div className="container mx-auto">

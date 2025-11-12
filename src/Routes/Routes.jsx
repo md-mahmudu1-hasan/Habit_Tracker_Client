@@ -9,10 +9,12 @@ import ForgetPassword from "../Authentication/Login/ForgetPassword";
 import HabitDetails from "../Pages/Home/HabitDetails";
 import BrowesPublic from "../Pages/BrowesPublic/BrowesPublic";
 import AddHabit from "../Pages/AddHabit/AddHabit";
+import NotFound from "../Pages/404Page/NotFound";
 export const route = createBrowserRouter([
   {
     path: "/",
     element: <Mainmother></Mainmother>,
+    errorElement:<NotFound></NotFound>,
     children: [
       {
         index: true,
@@ -67,6 +69,9 @@ export const route = createBrowserRouter([
             <My_Habit></My_Habit>
           </PrivetRoute>
         )
+      },{
+        path:"*",
+        element:<NotFound></NotFound>
       }
     ],
   },

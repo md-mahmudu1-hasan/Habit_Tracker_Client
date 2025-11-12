@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
+import Loader from "../Loader/Loader";
 
 const HabitDetails = () => {
   const { id } = useParams();
@@ -82,7 +83,7 @@ const HabitDetails = () => {
     }));
   }, [habit?.completedDates]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader></Loader>
 
   return (
     <div className="bg-[#e0f6fa] min-h-screen py-10">
