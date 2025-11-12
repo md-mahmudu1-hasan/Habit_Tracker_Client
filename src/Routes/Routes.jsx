@@ -43,7 +43,7 @@ export const route = createBrowserRouter([
       {
         path: "habitDetails/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/habits/${params.id}`),
+          fetch(`https://habit-tracker-server-five.vercel.app/habits/${params.id}`),
         element: (
           <PrivetRoute>
             <HabitDetails></HabitDetails>
