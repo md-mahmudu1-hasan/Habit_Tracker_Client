@@ -146,7 +146,7 @@ const handleMarkComplete = async (id) => {
                       </button>
                       <button
                         onClick={() => handleMarkComplete(habit._id)}
-                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+                        className="bg-[#2B7FFF] text-white px-3 py-1 rounded hover:bg-[#063986] transition"
                       >
                         Mark Complete
                       </button>
