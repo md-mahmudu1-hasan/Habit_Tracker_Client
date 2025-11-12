@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const axiosInstance = axios.create({
-  baseURL: 'https://habit-tracker-server-five.vercel.app',
+  baseURL: 'http://localhost:3000',
   
 });
 
@@ -10,4 +10,4 @@ const useAxios = () => {
     return axiosInstance;
 }
 
-export default useAxios;
+export default useAxios;  
