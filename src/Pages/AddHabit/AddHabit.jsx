@@ -29,7 +29,7 @@ const AddHabit = () => {
     await axios.post("/habits", habitData);
     e.target.reset();
     toast.success("Habit added successfully");
-  } catch (err) {
+  } catch {
     toast.error("Failed to add habit");
   } finally {
     setLoading(false);
@@ -70,6 +70,7 @@ const AddHabit = () => {
                 rows="3"
                 placeholder="Describe your habit..."
                 className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00B4D8] outline-none"
+                required
               ></textarea>
             </div>
 
@@ -111,6 +112,7 @@ const AddHabit = () => {
                 name="image"
                 placeholder="Image URL"
                 className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00B4D8] outline-none"
+               required
               />
             </div>
 

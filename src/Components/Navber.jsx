@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router";
 import useAuth from "../Hooks/useAuth";
 import { toast } from "react-hot-toast";
+import Loader from "../Pages/Loader/Loader";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +64,7 @@ const Navbar = () => {
           </div>
 
           {loading ? (
-            <span>loading...</span>
+            <Loader></Loader>
           ) : (
             <div className="hidden md:flex space-x-4">
               {!user ? (
