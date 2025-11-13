@@ -34,7 +34,7 @@ const BrowesPublic = () => {
   }, [axios]);
 
   const filteredHabits = habits.filter((habit) => {
-    const matchesSearch = habit.Title.toLowerCase().includes(
+    const matchesSearch = habit.Title.toLowerCase().startsWith(
       searchText.toLowerCase()
     );
     const matchesCategory =
@@ -50,6 +50,10 @@ const BrowesPublic = () => {
         <h2 className="text-[#03045E] font-bold text-3xl text-center py-10">
           Public Habits
         </h2>
+
+        <p className="text-gray-600 max-w-2xl mx-auto text-center mb-12 ">
+          Habits are repeated actions that shape your behavior and define your lifestyle.
+        </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-6">
           <input
@@ -88,6 +92,7 @@ const BrowesPublic = () => {
             filteredHabits.map((habit) => (
               <motion.div
                 variants={fadeIn("up", 0.3)}
+                key={habit._id}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: false, amount: 0.3 }}
@@ -96,7 +101,7 @@ const BrowesPublic = () => {
               </motion.div>
             ))
           ) : (
-            <p className="text-center text-gray-600">
+            <p className="text-center col-span-3 text-[#03045E] font-medium text-2xl">
               No habits found for your search/filter.
             </p>
           )}

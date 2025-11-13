@@ -29,7 +29,7 @@ const WhyBuildHabits = () => {
   return (
     <motion.section variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.3 }} className="py-16">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6">
           Why Build Habits?
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto mb-12">

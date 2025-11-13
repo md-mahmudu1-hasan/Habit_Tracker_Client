@@ -1,6 +1,6 @@
 # Habit Tracker
 
-Live Site:
+Live Site: https://habit-tracker-009.netlify.app/
 
  Technologies & Packages Used :
 - **React**: ^19.2.0  

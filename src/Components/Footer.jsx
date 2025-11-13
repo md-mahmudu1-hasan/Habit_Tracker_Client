@@ -72,7 +72,7 @@ const Footer = () => {
       <hr className="border-gray-700 my-8" />
 
       <p className="text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} HabitTracker — All Rights Reserved.
+        © {new Date().getFullYear()} HabitTracker All Rights Reserved.
       </p>
     </footer>
   );

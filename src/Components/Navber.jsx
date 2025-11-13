@@ -82,29 +82,40 @@ const Navbar = () => {
                   </NavLink>
                 </>
               ) : (
-                <div className="flex items-center gap-2">
+                <div className="relative flex items-center gap-2">
                   <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="m-1">
+                    <div
+                      tabIndex={0}
+                      role="button"
+                      className="m-1 outline-none focus:ring-2 focus:ring-[#65CFE6] rounded-full transition-all duration-200"
+                    >
                       <img
-                        className="w-10 h-10 object-cover rounded-full"
+                        className="w-11 h-11 object-cover rounded-full border-2 border-[#65CFE6] hover:scale-105 transition-transform duration-300 shadow-md"
                         referrerPolicy="no-referrer"
                         src={user?.photoURL}
                         alt={user?.displayName}
-                      />{" "}
+                      />
                     </div>
+
                     <ul
                       tabIndex="-1"
-                      className="dropdown-content bg-[#6BC5D0] menu rounded-box z-1 w-80 p-2 shadow-sm"
+                      className="dropdown-content menu bg-white/90 backdrop-blur-lg rounded-2xl z-1 w-72 p-4 shadow-xl border border-gray-100"
                     >
-                      <li>
-                        <p>{user?.displayName}</p>
+                      <li className="flex flex-col items-center text-center py-2 border-b border-gray-200">
+                        <img
+                          src={user?.photoURL}
+                          alt="User"
+                          className="h-16 w-16 object-cover rounded-full border-2 border-[#65CFE6] shadow-sm mb-2"
+                        />
+                        <p className="text-lg font-semibold text-gray-800">
+                          {user?.displayName}
+                        </p>
+                        <p className="text-sm text-gray-500">{user?.email.slice(0, 30)}</p>
                       </li>
-                      <li>
-                        <p>{user?.email}</p>
-                      </li>
-                      <li>
+
+                      <li className="pt-3">
                         <button
-                          className="bg-[#02449a] flex justify-center hover:bg-[#0077B6] rounded-md text-white px-4 py-2 my-2"
+                          className="bg-linear-to-r from-[#0077B6] to-[#00B4D8] flex justify-center rounded-lg text-white font-medium py-2 hover:opacity-90 active:scale-95 transition-all duration-300"
                           onClick={handleLogout}
                         >
                           Logout
@@ -218,32 +229,41 @@ const Navbar = () => {
               </NavLink>
             </>
           ) : (
-            <div className="flex items-center gap-2">
+            <div className="relative flex items-center gap-2">
               <div className="dropdown dropdown-start">
-                <div tabIndex={0} role="button" className="m-1">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="m-1 outline-none focus:ring-2 focus:ring-[#65CFE6] rounded-full transition-all duration-200"
+                >
                   <img
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-11 h-11 object-cover rounded-full border-2 border-[#65CFE6] hover:scale-105 transition-transform duration-300 shadow-md"
+                    referrerPolicy="no-referrer"
                     src={user?.photoURL}
-                    alt=""
-                  />{" "}
+                    alt={user?.displayName}
+                  />
                 </div>
+
                 <ul
                   tabIndex="-1"
-                  className="dropdown-content bg-[#6BC5D0] menu rounded-box z-1 w-80 p-2 shadow-sm"
+                  className="dropdown-content menu bg-white/90 backdrop-blur-lg rounded-2xl z-1 w-72 p-4 shadow-xl border border-gray-100"
                 >
-                  <li>
-                    <p>{user?.displayName}</p>
+                  <li className="flex flex-col items-center text-center py-2 border-b border-gray-200">
+                    <img
+                      src={user?.photoURL}
+                      alt="User"
+                      className="w-16 h-16 rounded-full border-2 border-[#65CFE6] shadow-sm mb-2"
+                    />
+                    <p className="text-lg font-semibold text-gray-800">
+                      {user?.displayName}
+                    </p>
+                    <p className="text-sm text-gray-500">{user?.email}</p>
                   </li>
-                  <li>
-                    <p>{user?.email}</p>
-                  </li>
-                  <li>
+
+                  <li className="pt-3">
                     <button
-                      className="bg-[#02449a] flex justify-center hover:bg-[#0077B6] rounded-md text-white px-4 py-2 my-2"
-                      onClick={() => {
-                        handleLogout();
-                        setIsOpen(false);
-                      }}
+                      className="w-full bg-linear-to-r from-[#0077B6] to-[#00B4D8] flex justify-center rounded-lg text-white font-medium py-2 hover:opacity-90 active:scale-95 transition-all duration-300"
+                      onClick={handleLogout}
                     >
                       Logout
                     </button>

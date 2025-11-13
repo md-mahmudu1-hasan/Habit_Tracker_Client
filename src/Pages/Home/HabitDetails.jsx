@@ -5,12 +5,14 @@ import toast from "react-hot-toast";
 import Loader from "../Loader/Loader";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../Utilities/Varients";
+import Lottie from "lottie-react";
 
 const HabitDetails = () => {
   const { id } = useParams();
   const axios = useAxios();
   const [loading, setLoading] = useState(true);
   const [habit, setHabit] = useState(null);
+  const [animationData, setAnimationData] = useState(null);
 
   const fetchHabit = async () => {
     try {
@@ -45,6 +47,12 @@ const HabitDetails = () => {
     }
   };
 
+  useEffect(() => {
+    fetch("/Fire Streak Orange.json")
+      .then((res) => res.json())
+      .then((data) => setAnimationData(data));
+  }, []);
+
   if (loading) return <Loader />;
   if (!habit)
     return <p className="text-center text-gray-500 mt-10">Habit not found</p>;
@@ -77,9 +85,20 @@ const HabitDetails = () => {
           </div>
         </div>
 
-        <div className="mb-4">
-          <span className="inline-block bg-green-200 text-green-800 text-sm px-3 py-1 rounded-full font-medium">
-            Streak: {habit.streak || 0} day{habit.streak !== 1 ? "s" : ""}
+        <div className="mb-4 flex items-center">
+          <span className="flex items-center bg-[#65CFE6] text-[#03045E] text-sm px-3 py-1 rounded-full font-medium">
+            <span className="h-10 w-10 flex items-center pb-1 justify-center">
+              {animationData && (
+                <Lottie
+                  animationData={animationData}
+                  loop={true}
+                  autoplay={true}
+                />
+              )}
+            </span>{" "}
+            <span className="pr-3">
+              Streak: {habit.streak || 0} day{habit.streak !== 1 ? "s" : ""}
+            </span>
           </span>
         </div>
 
