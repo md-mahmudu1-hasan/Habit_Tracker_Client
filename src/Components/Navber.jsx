@@ -62,73 +62,69 @@ const Navbar = () => {
               </NavLink>
             </>
           </div>
-
-          {loading ? (
-            <Loader></Loader>
-          ) : (
-            <div className="hidden md:flex space-x-4">
-              {!user ? (
-                <>
-                  <NavLink
-                    to="/login"
-                    className="px-4 py-2 rounded-md bg-[#03469d] hover:bg-[#0077B6]"
+          <div className="hidden md:flex space-x-4">
+            {!user ? (
+              <>
+                <NavLink
+                  to="/login"
+                  className="px-4 py-2 rounded-md bg-[#03469d] hover:bg-[#0077B6]"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/signup"
+                  className="px-4 py-2 rounded-md bg-[#02449a] hover:bg-[#0077B6]"
+                >
+                  Signup
+                </NavLink>
+              </>
+            ) : (
+              <div className="relative flex items-center gap-2">
+                <div className="dropdown dropdown-end">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="m-1 outline-none focus:ring-2 focus:ring-[#65CFE6] rounded-full transition-all duration-200"
                   >
-                    Login
-                  </NavLink>
-                  <NavLink
-                    to="/signup"
-                    className="px-4 py-2 rounded-md bg-[#02449a] hover:bg-[#0077B6]"
-                  >
-                    Signup
-                  </NavLink>
-                </>
-              ) : (
-                <div className="relative flex items-center gap-2">
-                  <div className="dropdown dropdown-end">
-                    <div
-                      tabIndex={0}
-                      role="button"
-                      className="m-1 outline-none focus:ring-2 focus:ring-[#65CFE6] rounded-full transition-all duration-200"
-                    >
-                      <img
-                        className="w-11 h-11 object-cover rounded-full border-2 border-[#65CFE6] hover:scale-105 transition-transform duration-300 shadow-md"
-                        referrerPolicy="no-referrer"
-                        src={user?.photoURL}
-                        alt={user?.displayName}
-                      />
-                    </div>
-
-                    <ul
-                      tabIndex="-1"
-                      className="dropdown-content menu bg-white/90 backdrop-blur-lg rounded-2xl z-1 w-72 p-4 shadow-xl border border-gray-100"
-                    >
-                      <li className="flex flex-col items-center text-center py-2 border-b border-gray-200">
-                        <img
-                          src={user?.photoURL}
-                          alt="User"
-                          className="h-16 w-16 object-cover rounded-full border-2 border-[#65CFE6] shadow-sm mb-2"
-                        />
-                        <p className="text-lg font-semibold text-gray-800">
-                          {user?.displayName}
-                        </p>
-                        <p className="text-sm text-gray-500">{user?.email.slice(0, 30)}</p>
-                      </li>
-
-                      <li className="pt-3">
-                        <button
-                          className="bg-linear-to-r from-[#0077B6] to-[#00B4D8] flex justify-center rounded-lg text-white font-medium py-2 hover:opacity-90 active:scale-95 transition-all duration-300"
-                          onClick={handleLogout}
-                        >
-                          Logout
-                        </button>
-                      </li>
-                    </ul>
+                    <img
+                      className="w-11 h-11 object-cover rounded-full border-2 border-[#65CFE6] hover:scale-105 transition-transform duration-300 shadow-md"
+                      referrerPolicy="no-referrer"
+                      src={user?.photoURL}
+                      alt={user?.displayName}
+                    />
                   </div>
-                </div>
-              )}
-            </div>
-          )}
 
+                  <ul
+                    tabIndex="-1"
+                    className="dropdown-content menu bg-white/90 backdrop-blur-lg rounded-2xl z-1 w-72 p-4 shadow-xl border border-gray-100"
+                  >
+                    <li className="flex flex-col items-center text-center py-2 border-b border-gray-200">
+                      <img
+                        src={user?.photoURL}
+                        alt="User"
+                        className="h-16 w-16 object-cover rounded-full border-2 border-[#65CFE6] shadow-sm mb-2"
+                      />
+                      <p className="text-lg font-semibold text-gray-800">
+                        {user?.displayName}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {user?.email.slice(0, 30)}
+                      </p>
+                    </li>
+
+                    <li className="pt-3">
+                      <button
+                        className="bg-linear-to-r from-[#0077B6] to-[#00B4D8] flex justify-center rounded-lg text-white font-medium py-2 hover:opacity-90 active:scale-95 transition-all duration-300"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          </div>
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
