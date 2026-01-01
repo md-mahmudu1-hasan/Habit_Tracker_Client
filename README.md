@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://i.ibb.co/ksM0TJxt/Gemini-Generated-Image-m5so6mm5so6mm5so.png" alt="Habit Tracker Banner" width="900"/>
-</p>
-
 <h1 align="center">Habit Tracker</h1>
 <h3 align="center">A simple and interactive web app to monitor daily routines and build productive habits.</h3>
 
@@ -55,27 +51,3 @@ Users can **add, update, delete, and mark habits complete**, track their progres
 1. **Clone the repository**
 ```bash
 git clone https://github.com/your-username/habit-tracker.git
-
-cd habit-tracker
-```
-2. **Install dependencies**
-```bash
-npm install
-```
-3. **Set up Firebase**
-- Create a Firebase project and enable Authentication (Email/Password) and Firestore Database.
-- Create a `.env` file in the root directory and add your Firebase config:
-```env
-VITE_API_KEY=your_api_key
-VITE_AUTH_DOMAIN=your_auth_domain
-VITE_PROJECT_ID=your_project_id
-VITE_STORAGE_BUCKET=your_storage_bucket
-VITE_MESSAGING_SENDER_ID=your_messaging_sender_id
-VITE_APP_ID=your_app_id
-```
-4. **Run the development server**
-```bash
-npm run dev
-```
-5. **Open your browser** and navigate to `http://localhost:5173`    
-    
