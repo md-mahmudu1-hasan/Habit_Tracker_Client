@@ -78,3 +78,4 @@ VITE_APP_ID=your_app_id
 npm run dev
 ```
 5. **Open your browser** and navigate to `http://localhost:5173`    
+    

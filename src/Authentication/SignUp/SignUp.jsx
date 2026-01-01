@@ -259,6 +259,7 @@ const SignUp = () => {
                   id="name"
                   type="name"
                   name="name"
+                  required
                   placeholder="Your Name"
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
                 />
@@ -280,6 +281,7 @@ const SignUp = () => {
                   id="photoURL"
                   type="photoURL"
                   name="photoURL"
+                  required
                   placeholder="https://example.com/photo.jpg"
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
                 />
@@ -301,6 +303,7 @@ const SignUp = () => {
                   id="email"
                   type="email"
                   name="email"
+                  required
                   placeholder="you@example.com"
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
                 />
@@ -323,6 +326,7 @@ const SignUp = () => {
                   name="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
+                  required
                   className="block w-full pl-10 pr-12 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
                 />
                 <button

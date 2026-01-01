@@ -6,7 +6,7 @@ import Loader from "../Pages/Loader/Loader";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, SignOut, loading } = useAuth();
+  const { user, SignOut } = useAuth();
 
   const handleLogout = () => {
     SignOut()
