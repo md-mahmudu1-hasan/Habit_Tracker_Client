@@ -34,8 +34,8 @@ const ForgetPassword = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-[#e0f6fa] p-2">
-      <div className="bg-[#24BBDC] h-[250px] md:w-1/2 w-full mx-auto my-10 p-8 m-2 rounded-2xl shadow-md max-w-4xl border border-[#03045E]">
-        <h2 className="text-xl font-bold text-center mb-4 text-[#03045E]">
+      <div className="bg-[#24BBDC] dark:bg-slate-800 h-[250px] md:w-1/2 w-full mx-auto my-10 p-8 m-2 rounded-2xl shadow-md max-w-4xl border border-[#03045E]">
+        <h2 className="text-xl font-bold text-center mb-4 text-[#03045E] dark:text-white">
           Reset Password
         </h2>
 
@@ -44,13 +44,13 @@ const ForgetPassword = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
-          className="border bg-white border-gray-300 p-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-[#24BBDC]"
+          className="border bg-white dark:bg-slate-800 border-gray-300 p-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-[#24BBDC]"
         />
 
         <button
           target="_blank"
           onClick={handleReset}
-          className="bg-[#03045E] hover:bg-[#03045E] text-white font-semibold my-2 py-2 px-4 w-full rounded-md"
+          className="bg-[#03045E] dark:bg-sky-400 hover:bg-[#03045E] text-white font-semibold my-2 py-2 px-4 w-full rounded-md"
         >
           Reset Password
         </button>

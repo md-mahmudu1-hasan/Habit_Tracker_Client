@@ -10,6 +10,7 @@ import HabitDetails from "../Pages/Home/HabitDetails";
 import BrowesPublic from "../Pages/BrowesPublic/BrowesPublic";
 import AddHabit from "../Pages/AddHabit/AddHabit";
 import NotFound from "../Pages/404Page/NotFound";
+import About from "../Pages/About Us/About";
 export const route = createBrowserRouter([
   {
     path: "/",
@@ -45,9 +46,7 @@ export const route = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://habit-tracker-server-five.vercel.app/habits/${params.id}`),
         element: (
-          <PrivetRoute>
             <HabitDetails></HabitDetails>
-          </PrivetRoute>
         ),
       },
       {
@@ -69,7 +68,12 @@ export const route = createBrowserRouter([
             <My_Habit></My_Habit>
           </PrivetRoute>
         )
-      },{
+      },
+      {
+        path:"/about",
+        element:<About></About>
+      },
+      {
         path:"*",
         element:<NotFound></NotFound>
       }

@@ -6,13 +6,17 @@ import Loader from "../Loader/Loader";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../Utilities/Varients";
 
-const BrowesPublic = () => {
+const BrowsePublic = () => {
   const axios = useAxios();
   const [habits, setHabits] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterCategory, setFilterCategory] = useState("All");
   const [animationData, setAnimationData] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 8;
 
   useEffect(() => {
     fetch("/Loading 40 _ Paperplane.json")
@@ -42,6 +46,20 @@ const BrowesPublic = () => {
     return matchesSearch && matchesCategory;
   });
 
+  // Pagination logic
+  const indexOfLastCard = currentPage * cardsPerPage;
+  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+  const currentHabits = filteredHabits.slice(indexOfFirstCard, indexOfLastCard);
+  const totalPages = Math.ceil(filteredHabits.length / cardsPerPage);
+
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
   if (loading) return <Loader />;
 
   return (
@@ -53,8 +71,7 @@ const BrowesPublic = () => {
         </h2>
 
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-center mb-12">
-          Habits are repeated actions that shape your behavior and define your
-          lifestyle.
+          Habits are repeated actions that shape your behavior and define your lifestyle.
         </p>
 
         {/* Search & Filter */}
@@ -75,11 +92,8 @@ const BrowesPublic = () => {
             onChange={(e) => setSearchText(e.target.value)}
           />
 
-          {/* Lottie Animation */}
           <div className="absolute md:mb-15 mb-27 right-2 md:right-138 h-8 w-32">
-            {animationData && (
-              <Lottie animationData={animationData} loop autoplay />
-            )}
+            {animationData && <Lottie animationData={animationData} loop autoplay />}
           </div>
 
           <select
@@ -105,9 +119,9 @@ const BrowesPublic = () => {
         </div>
 
         {/* Habits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2">
-          {filteredHabits.length > 0 ? (
-            filteredHabits.map((habit) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-2">
+          {currentHabits.length > 0 ? (
+            currentHabits.map((habit) => (
               <motion.div
                 key={habit._id}
                 variants={fadeIn("up", 0.3)}
@@ -124,9 +138,40 @@ const BrowesPublic = () => {
             </p>
           )}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-4 mt-8">
+            <button
+              onClick={handlePrev}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 rounded-lg font-semibold text-white ${
+                currentPage === 1
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-[#03045E] hover:bg-[#03045E]/90 dark:bg-sky-600 dark:hover:bg-sky-500"
+              }`}
+            >
+              Prev
+            </button>
+            <span className="text-gray-800 dark:text-gray-200 font-medium">
+              {currentPage} / {totalPages}
+            </span>
+            <button
+              onClick={handleNext}
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 rounded-lg font-semibold text-white ${
+                currentPage === totalPages
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-[#03045E] hover:bg-[#03045E]/90 dark:bg-sky-600 dark:hover:bg-sky-500"
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default BrowesPublic;
+export default BrowsePublic;

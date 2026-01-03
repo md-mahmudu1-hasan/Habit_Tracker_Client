@@ -68,12 +68,19 @@ const Navbar = () => {
             <NavLink to="/browse-public" className={navLinkClass}>
               Browse Public Habits
             </NavLink>
-            <NavLink to="/add-habit" className={navLinkClass}>
-              Add Habit
+            <NavLink to="/about" className={navLinkClass}>
+              About
             </NavLink>
-            <NavLink to="/my-habits" className={navLinkClass}>
-              My Habits
-            </NavLink>
+            {user && (
+              <>
+                <NavLink to="/add-habit" className={navLinkClass}>
+                  Add Habit
+                </NavLink>
+                <NavLink to="/my-habits" className={navLinkClass}>
+                  My Habits
+                </NavLink>
+              </>
+            )}
           </div>
 
           {/* Auth Buttons / User */}

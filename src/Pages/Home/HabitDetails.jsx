@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import Loader from "../Loader/Loader";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../Utilities/Varients";
 import Lottie from "lottie-react";
+import useAuth from "../../Hooks/useAuth";
 
 const HabitDetails = () => {
   const { id } = useParams();
@@ -13,6 +14,7 @@ const HabitDetails = () => {
   const [loading, setLoading] = useState(true);
   const [habit, setHabit] = useState(null);
   const [animationData, setAnimationData] = useState(null);
+  const { user } = useAuth();
 
   const fetchHabit = async () => {
     try {
@@ -147,17 +149,26 @@ const HabitDetails = () => {
         </div>
 
         {/* Action */}
-        <button
-          onClick={handleMarkComplete}
-          className="
+        {user?.email ? (
+          <button
+            onClick={handleMarkComplete}
+            className="
           px-6 py-2 rounded font-semibold text-white
           bg-blue-500 hover:bg-blue-600
           dark:bg-sky-600 dark:hover:bg-sky-500
           transition-colors
         "
-        >
-          Mark Complete
-        </button>
+          >
+            Mark Complete
+          </button>
+        ) : (
+          <Link
+            className="bg-[#03045E] dark:bg-sky-400 hover:bg-[#03045E] text-white font-semibold my-2 py-2 px-4 w-full rounded-md"
+            to="/login"
+          >
+            Mark Complete
+          </Link>
+        )}
       </div>
     </motion.div>
   );
