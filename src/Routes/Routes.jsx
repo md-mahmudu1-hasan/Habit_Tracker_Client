@@ -11,11 +11,13 @@ import BrowesPublic from "../Pages/BrowesPublic/BrowesPublic";
 import AddHabit from "../Pages/AddHabit/AddHabit";
 import NotFound from "../Pages/404Page/NotFound";
 import About from "../Pages/About Us/About";
+import DashboardLayout from "../Layout/DashboardLayout";
+import DashboardHome from "../Pages/DashboardHome/DashboardHome";
 export const route = createBrowserRouter([
   {
     path: "/",
     element: <Mainmother></Mainmother>,
-    errorElement:<NotFound></NotFound>,
+    errorElement: <NotFound></NotFound>,
     children: [
       {
         index: true,
@@ -44,39 +46,41 @@ export const route = createBrowserRouter([
       {
         path: "habitDetails/:id",
         loader: ({ params }) =>
-          fetch(`https://habit-tracker-server-five.vercel.app/habits/${params.id}`),
-        element: (
-            <HabitDetails></HabitDetails>
-        ),
+          fetch(
+            `https://habit-tracker-server-five.vercel.app/habits/${params.id}`
+          ),
+        element: <HabitDetails></HabitDetails>,
       },
       {
         path: "/browse-public",
         element: <BrowesPublic></BrowesPublic>,
       },
       {
-        path: "/add-habit",
-        element: (
-          <PrivetRoute>
-            <AddHabit></AddHabit>
-          </PrivetRoute>
-        ),
+        path: "/about",
+        element: <About></About>,
       },
       {
-        path:"/my-habits",
-        element:(
-          <PrivetRoute>
-            <My_Habit></My_Habit>
-          </PrivetRoute>
-        )
+        path: "*",
+        element: <NotFound></NotFound>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        index: true,
+        element: <DashboardHome></DashboardHome>,
       },
       {
-        path:"/about",
-        element:<About></About>
+        path: "dashboard/add-habit",
+        element: <AddHabit></AddHabit>,
       },
       {
-        path:"*",
-        element:<NotFound></NotFound>
-      }
+        path: "dashboard/my-habits",
+        element: <My_Habit></My_Habit>,
+      },
     ],
   },
 ]);

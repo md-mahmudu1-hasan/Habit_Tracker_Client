@@ -73,11 +73,8 @@ const Navbar = () => {
             </NavLink>
             {user && (
               <>
-                <NavLink to="/add-habit" className={navLinkClass}>
-                  Add Habit
-                </NavLink>
-                <NavLink to="/my-habits" className={navLinkClass}>
-                  My Habits
+                <NavLink to="/dashboard" className={navLinkClass}>
+                  Dashboard
                 </NavLink>
               </>
             )}
@@ -127,7 +124,7 @@ const Navbar = () => {
                   <li className="pt-3">
                     <button
                       onClick={handleLogout}
-                      className="w-full py-2 rounded-lg text-white bg-linear-to-r from-[#0077B6] to-[#00B4D8] dark:from-sky-600 dark:to-cyan-600 hover:opacity-90 transition"
+                      className="w-full px-4 flex justify-center py-2 rounded-lg text-white bg-linear-to-r from-[#0077B6] to-[#00B4D8] dark:from-sky-600 dark:to-cyan-600 hover:opacity-90 transition"
                     >
                       Logout
                     </button>
@@ -194,30 +191,13 @@ const Navbar = () => {
             Browse Public Habits
           </NavLink>
 
-          <>
-            <NavLink
-              to="/add-habit"
-              onClick={() => setIsOpen(false)}
-              className={({ isActive }) =>
-                isActive
-                  ? "block underline font-semibold"
-                  : "block hover:underline"
-              }
-            >
-              Add Habit
-            </NavLink>
-            <NavLink
-              to="/my-habits"
-              onClick={() => setIsOpen(false)}
-              className={({ isActive }) =>
-                isActive
-                  ? "block underline font-semibold"
-                  : "block hover:underline"
-              }
-            >
-              My Habits
-            </NavLink>
-          </>
+            {user && (
+              <>
+                <NavLink to="/dashboard" className={navLinkClass}>
+                  Dashboard
+                </NavLink>
+              </>
+            )}
 
           {!user ? (
             <>

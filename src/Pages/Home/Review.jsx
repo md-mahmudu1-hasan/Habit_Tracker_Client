@@ -27,7 +27,7 @@ const Review = () => {
 
   return (
     <motion.section variants={fadeIn("left", 0.3)} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.3 }} className="bg-[#e0f6fa] py-16 dark:bg-slate-900" id="reviews">
-      <div className="max-w-6xl mx-auto px-6 text-center dark:bg-slate-900">
+      <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] dark:text-white mb-6">
           What Our Users Say
         </h2>

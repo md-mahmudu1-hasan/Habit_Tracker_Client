@@ -6,6 +6,9 @@ import Review from './Review'
 import Features from './Features'
 import Loader from '../Loader/Loader'
 import useAuth from '../../Hooks/useAuth'
+import HowCanThisHelp from './HowCanThisHelp'
+import HowWeOperate from './HowWeOperate'
+import FAQ from './FAQ'
 const Home = () => {
 
   const {loading} = useAuth();
@@ -19,6 +22,9 @@ const Home = () => {
         <WhyBuildHabit></WhyBuildHabit>
         <Features></Features>
         <Review></Review>
+        <HowCanThisHelp></HowCanThisHelp>
+        <HowWeOperate></HowWeOperate>
+        <FAQ></FAQ>
     </div>
   )
 }
