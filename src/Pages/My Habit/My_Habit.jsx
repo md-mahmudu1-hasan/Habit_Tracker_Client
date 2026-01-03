@@ -201,14 +201,14 @@ const My_Habit_Table = () => {
                 className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               />
 
-              <div className="flex gap-3">
-                <button type="submit" className="btn btn-primary w-full">
+              <div className="flex justify-between gap-3">
+                <button type="submit" className="btn btn-primary">
                   Update
                 </button>
                 <button
                   type="button"
                   onClick={() => modalRef.current.close()}
-                  className="btn w-full"
+                  className="btn"
                 >
                   Close
                 </button>
