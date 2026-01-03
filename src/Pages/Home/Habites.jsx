@@ -33,8 +33,8 @@ useEffect(() => {
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-[#03045E] font-bold text-3xl text-center py-10">Habites</h2>
-      <p className="text-gray-600 max-w-2xl mx-auto mb-12 text-center">
+      <h2 className="text-[#03045E] dark:text-white font-bold text-3xl text-center py-10">Habites</h2>
+      <p className="text-gray-600 dark:text-white max-w-2xl mx-auto mb-12 text-center">
         Explore our collection of habits and start building positive routines today!
       </p>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2">

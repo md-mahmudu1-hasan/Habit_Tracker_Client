@@ -29,10 +29,10 @@ const WhyBuildHabits = () => {
   return (
     <motion.section variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.3 }} className="py-16">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] dark:text-white mb-6">
           Why Build Habits?
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+        <p className="text-gray-600 dark:text-white max-w-2xl mx-auto mb-12">
           Building positive habits is the foundation of a successful, balanced,
           and fulfilling life.
         </p>
@@ -41,13 +41,13 @@ const WhyBuildHabits = () => {
           {benefits.map((item, index) => (
             <div
               key={index}
-              className="bg-white shadow-md hover:shadow-lg rounded-2xl p-6 transition duration-300"
+              className="bg-white dark:bg-slate-800 shadow-md hover:shadow-lg rounded-2xl p-6 transition duration-300"
             >
               <div className="flex justify-center mb-4">{item.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-600 text-sm">{item.desc}</p>
+              <p className="text-gray-600 dark:text-white text-sm">{item.desc}</p>
             </div>
           ))}
         </div>

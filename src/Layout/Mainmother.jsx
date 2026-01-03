@@ -4,7 +4,7 @@ import Footer from "../Components/Footer";
 
 const Mainmother = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#e0f6fa]">
+    <div className="flex flex-col min-h-screen bg-[#e0f6fa] dark:bg-[#020617]">
       <Navbar />
       <div className="flex-1">
         <Outlet></Outlet>

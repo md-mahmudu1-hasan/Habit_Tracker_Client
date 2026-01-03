@@ -13,7 +13,7 @@ const Home = () => {
     return <Loader></Loader>;
   }
   return (
-    <div className='bg-[#e0f6fa] h-full'>
+    <div className='bg-[#e0f6fa] dark:bg-[#020617] h-full'>
         <HeroSlider></HeroSlider>
         <Habites></Habites>
         <WhyBuildHabit></WhyBuildHabit>

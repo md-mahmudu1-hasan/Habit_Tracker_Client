@@ -26,12 +26,12 @@ const Review = () => {
   ];
 
   return (
-    <motion.section variants={fadeIn("left", 0.3)} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.3 }} className="bg-[#e0f6fa] py-16" id="reviews">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6">
+    <motion.section variants={fadeIn("left", 0.3)} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.3 }} className="bg-[#e0f6fa] py-16 dark:bg-slate-900" id="reviews">
+      <div className="max-w-6xl mx-auto px-6 text-center dark:bg-slate-900">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] dark:text-white mb-6">
           What Our Users Say
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+        <p className="text-gray-600 dark:text-white max-w-2xl mx-auto mb-12">
           See how building habits has transformed our users lives and boosted their success.
         </p>
 
@@ -39,14 +39,14 @@ const Review = () => {
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="bg-gray-50 shadow-md hover:shadow-lg rounded-2xl p-6 transition duration-300"
+              className="bg-gray-50 dark:bg-slate-800 shadow-md hover:shadow-lg rounded-2xl p-6 transition duration-300"
             >
               <img
                 src={review.img}
                 alt={review.name}
                 className="w-16 h-16 rounded-full mx-auto mb-4 border-2 border-blue-500"
               />
-              <h3 className="text-lg font-semibold text-gray-800 mb-1">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">
                 {review.name}
               </h3>
               <div className="flex justify-center mb-2 text-yellow-400">
@@ -54,7 +54,7 @@ const Review = () => {
                   <FaStar key={i} />
                 ))}
               </div>
-              <p className="text-gray-600 text-sm">{review.text}</p>
+              <p className="text-gray-600 dark:text-white text-sm">{review.text}</p>
             </div>
           ))}
         </div>

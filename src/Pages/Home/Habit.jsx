@@ -12,41 +12,75 @@ const Habit = ({ habit }) => {
   }, []);
 
   const habitDisk = habit.Description.slice(0, 40) + "...";
+
   return (
-    <div className="bg-gradient-to-b from-white to-blue-50 p-4 rounded-2xl shadow-md hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
+    <div
+      className="
+      bg-gradient-to-b from-white to-blue-50
+      dark:bg-gradient-to-b dark:from-slate-800 dark:to-slate-900
+      p-4 rounded-2xl shadow-md dark:shadow-black/40
+      hover:shadow-2xl transform hover:-translate-y-1
+      transition-all duration-300
+      border dark:border-gray-700
+    "
+    >
+      {/* Image */}
       <div className="relative overflow-hidden rounded-xl">
         <img
           src={habit.Image}
           alt={habit.Title}
-          className="w-full h-60 object-cover rounded-xl transition-transform duration-500 hover:scale-105"
+          className="
+            w-full h-60 object-cover rounded-xl
+            transition-transform duration-500 hover:scale-105
+          "
         />
-        <div className="absolute flex items-center justify-between bottom-2 right-2 bg-[#65CFE6] text-white text-sm px-3 py-1 rounded-full shadow">
+
+        {/* Streak Badge */}
+        <div
+          className="
+          absolute flex items-center gap-2 bottom-2 right-2
+          bg-[#65CFE6] dark:bg-sky-600
+          text-white text-sm px-3 py-1
+          rounded-full shadow
+        "
+        >
           <span className="h-10 w-10 flex items-center justify-center">
             {animationData && (
-              <Lottie
-                animationData={animationData}
-                loop={true}
-                autoplay={true}
-              />
-            )}{" "}
+              <Lottie animationData={animationData} loop autoplay />
+            )}
           </span>
           <span>{habit?.streak || 0} Days Streak</span>
         </div>
       </div>
 
+      {/* Content */}
       <div className="p-3">
-        <h2 className="text-2xl font-bold text-gray-800 mb-1">{habit.Title}</h2>
-        <p className="text-gray-600 text-sm mb-4">{habitDisk}</p>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-1">
+          {habit.Title}
+        </h2>
+
+        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+          {habitDisk}
+        </p>
 
         <div className="flex items-center mb-3">
-          <p className="text-sm text-gray-700 font-medium">
-            <span className="text-xs text-gray-500 italic">Habit Creator</span>:{" "}
-            {habit?.Username || "Unknown"}
+          <p className="text-sm text-gray-700 dark:text-gray-300 font-medium">
+            <span className="text-xs text-gray-500 dark:text-gray-400 italic">
+              Habit Creator
+            </span>
+            : {habit?.Username || "Unknown"}
           </p>
         </div>
 
         <Link to={`/habitDetails/${habit._id}`}>
-          <button className="w-full bg-[#03045E] text-white py-2 rounded-xl font-semibold hover:bg-[#03045E]/90 active:scale-95 transition-all duration-300">
+          <button
+            className="
+            w-full py-2 rounded-xl font-semibold text-white
+            bg-[#03045E] hover:bg-[#03045E]/90
+            dark:bg-sky-600 dark:hover:bg-sky-500
+            active:scale-95 transition-all duration-300
+          "
+          >
             View Details
           </button>
         </Link>
