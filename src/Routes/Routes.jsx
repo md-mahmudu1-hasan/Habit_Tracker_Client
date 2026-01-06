@@ -13,6 +13,8 @@ import NotFound from "../Pages/404Page/NotFound";
 import About from "../Pages/About Us/About";
 import DashboardLayout from "../Layout/DashboardLayout";
 import DashboardHome from "../Pages/DashboardHome/DashboardHome";
+import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
+import MyProfile from "../Pages/MyProfile/MyProfile";
 export const route = createBrowserRouter([
   {
     path: "/",
@@ -60,6 +62,10 @@ export const route = createBrowserRouter([
         element: <About></About>,
       },
       {
+        path: "/terms-and-conditions",
+        element: <TermsAndConditions></TermsAndConditions>,
+      },
+      {
         path: "*",
         element: <NotFound></NotFound>,
       },
@@ -80,6 +86,10 @@ export const route = createBrowserRouter([
       {
         path: "dashboard/my-habits",
         element: <My_Habit></My_Habit>,
+      },
+      {
+        path: "dashboard/my-profile",
+        element: <MyProfile></MyProfile>,
       },
     ],
   },

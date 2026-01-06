@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxios from "../../Hooks/useAxios";
 import Habit from "../Home/Habit";
-import Lottie from "lottie-react";
+// import Lottie from "lottie-react";
 import Loader from "../Loader/Loader";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../Utilities/Varients";
@@ -11,18 +11,19 @@ const BrowsePublic = () => {
   const [habits, setHabits] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterCategory, setFilterCategory] = useState("All");
-  const [animationData, setAnimationData] = useState(null);
+  const [sortType, setSortType] = useState("newest");
+  // const [animationData, setAnimationData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Pagination states
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 8;
 
-  useEffect(() => {
-    fetch("/Loading 40 _ Paperplane.json")
-      .then((res) => res.json())
-      .then((data) => setAnimationData(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/Loading 40 _ Paperplane.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setAnimationData(data));
+  // }, []);
 
   useEffect(() => {
     const fetchHabits = async () => {
@@ -37,6 +38,7 @@ const BrowsePublic = () => {
     fetchHabits();
   }, [axios]);
 
+  // 🔍 Filter + Search
   const filteredHabits = habits.filter((habit) => {
     const matchesSearch = habit.Title.toLowerCase().startsWith(
       searchText.toLowerCase()
@@ -46,26 +48,35 @@ const BrowsePublic = () => {
     return matchesSearch && matchesCategory;
   });
 
+  // 🔃 Sorting
+  const sortedHabits = [...filteredHabits].sort((a, b) => {
+    if (sortType === "az") {
+      return a.Title.localeCompare(b.Title);
+    }
+    if (sortType === "za") {
+      return b.Title.localeCompare(a.Title);
+    }
+    return 0;
+  });
+
   // Pagination logic
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentHabits = filteredHabits.slice(indexOfFirstCard, indexOfLastCard);
-  const totalPages = Math.ceil(filteredHabits.length / cardsPerPage);
+  const currentHabits = sortedHabits.slice(
+    indexOfFirstCard,
+    indexOfLastCard
+  );
+  const totalPages = Math.ceil(sortedHabits.length / cardsPerPage);
 
-  const handlePrev = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  };
+  const handlePrev = () => currentPage > 1 && setCurrentPage(currentPage - 1);
+  const handleNext = () =>
+    currentPage < totalPages && setCurrentPage(currentPage + 1);
 
   if (loading) return <Loader />;
 
   return (
     <div className="bg-[#e0f6fa] dark:bg-slate-900 min-h-screen">
-      <div className="pt-17 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Heading */}
+      <div className="pt-17 max-w-7xl mx-auto px-4 relative">
         <h2 className="text-[#03045E] dark:text-sky-400 font-bold text-3xl text-center py-10">
           Public Habits
         </h2>
@@ -74,8 +85,7 @@ const BrowsePublic = () => {
           Habits are repeated actions that shape your behavior and define your lifestyle.
         </p>
 
-        {/* Search & Filter */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-6 relative">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-4 mb-8 relative">
           <input
             type="text"
             placeholder="Search by title..."
@@ -84,17 +94,16 @@ const BrowsePublic = () => {
               bg-white dark:bg-slate-800
               text-gray-800 dark:text-gray-100
               rounded-md px-4 py-2
-              w-full md:w-1/3
+              w-full lg:w-1/4
               focus:ring-2 focus:ring-[#00B4D8] dark:focus:ring-sky-500
               outline-none
             "
             value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+              setCurrentPage(1);
+            }}
           />
-
-          <div className="absolute md:mb-15 mb-27 right-2 md:right-138 h-8 w-32">
-            {animationData && <Lottie animationData={animationData} loop autoplay />}
-          </div>
 
           <select
             className="
@@ -102,12 +111,15 @@ const BrowsePublic = () => {
               bg-white dark:bg-slate-800
               text-gray-800 dark:text-gray-100
               rounded-md px-4 py-2
-              w-full md:w-1/4
+              w-full lg:w-1/5
               focus:ring-2 focus:ring-[#00B4D8] dark:focus:ring-sky-500
               outline-none
             "
             value={filterCategory}
-            onChange={(e) => setFilterCategory(e.target.value)}
+            onChange={(e) => {
+              setFilterCategory(e.target.value);
+              setCurrentPage(1);
+            }}
           >
             <option value="All">All Categories</option>
             <option value="Morning">Morning</option>
@@ -116,11 +128,37 @@ const BrowsePublic = () => {
             <option value="Evening">Evening</option>
             <option value="Study">Study</option>
           </select>
+
+          <select
+            className="
+              border border-gray-300 dark:border-slate-600
+              bg-white dark:bg-slate-800
+              text-gray-800 dark:text-gray-100
+              rounded-md px-4 py-2
+              w-full lg:w-1/5
+              focus:ring-2 focus:ring-[#00B4D8] dark:focus:ring-sky-500
+              outline-none
+            "
+            value={sortType}
+            onChange={(e) => {
+              setSortType(e.target.value);
+              setCurrentPage(1);
+            }}
+          >
+            <option value="az">Title A → Z</option>
+            <option value="za">Title Z → A</option>
+          </select>
+
+          {/* Lottie */}
+          {/* <div className="absolute right-0 top-[-20px] hidden md:block w-28">
+            {animationData && (
+              <Lottie animationData={animationData} loop autoplay />
+            )}
+          </div> */}
         </div>
 
-        {/* Habits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-2">
-          {currentHabits.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {currentHabits.length ? (
             currentHabits.map((habit) => (
               <motion.div
                 key={habit._id}
@@ -133,19 +171,19 @@ const BrowsePublic = () => {
               </motion.div>
             ))
           ) : (
-            <p className="text-center col-span-3 text-[#03045E] dark:text-sky-400 font-medium text-2xl">
-              No habits found for your search/filter.
+            <p className="col-span-4 text-center text-[#03045E] dark:text-sky-400 text-xl font-medium">
+              No habits found.
             </p>
           )}
         </div>
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-4 mt-8">
+          <div className="flex justify-center items-center gap-4 mt-10">
             <button
               onClick={handlePrev}
               disabled={currentPage === 1}
-              className={`px-4 py-2 rounded-lg font-semibold text-white ${
+              className={`px-4 py-2 rounded-lg text-white font-semibold ${
                 currentPage === 1
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-[#03045E] hover:bg-[#03045E]/90 dark:bg-sky-600 dark:hover:bg-sky-500"
@@ -153,13 +191,15 @@ const BrowsePublic = () => {
             >
               Prev
             </button>
+
             <span className="text-gray-800 dark:text-gray-200 font-medium">
               {currentPage} / {totalPages}
             </span>
+
             <button
               onClick={handleNext}
               disabled={currentPage === totalPages}
-              className={`px-4 py-2 rounded-lg font-semibold text-white ${
+              className={`px-4 py-2 rounded-lg text-white font-semibold ${
                 currentPage === totalPages
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-[#03045E] hover:bg-[#03045E]/90 dark:bg-sky-600 dark:hover:bg-sky-500"

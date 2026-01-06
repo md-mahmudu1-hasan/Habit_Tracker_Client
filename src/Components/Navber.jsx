@@ -71,6 +71,9 @@ const Navbar = () => {
             <NavLink to="/about" className={navLinkClass}>
               About
             </NavLink>
+            <NavLink to="/terms-and-conditions" className={navLinkClass}>
+              Terms & Conditions
+            </NavLink>
             {user && (
               <>
                 <NavLink to="/dashboard" className={navLinkClass}>
@@ -189,6 +192,28 @@ const Navbar = () => {
             }
           >
             Browse Public Habits
+          </NavLink>
+          <NavLink
+            to="/about"
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              isActive
+                ? "block underline font-semibold"
+                : "block hover:underline"
+            }
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/terms-and-conditions"
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              isActive
+                ? "block underline font-semibold"
+                : "block hover:underline"
+            }
+          >
+            Terms & Conditions
           </NavLink>
 
             {user && (

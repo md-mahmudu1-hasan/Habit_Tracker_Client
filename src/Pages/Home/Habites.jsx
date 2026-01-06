@@ -27,7 +27,7 @@ useEffect(() => {
 }, [axios]);
 
 
-  const habitsSlice = habits.slice(0, 6);
+  const habitsSlice = habits.slice(0, 8);
 
   if (loading) return <Loader></Loader>
 
@@ -37,7 +37,7 @@ useEffect(() => {
       <p className="text-gray-600 dark:text-white max-w-2xl mx-auto mb-12 text-center">
         Explore our collection of habits and start building positive routines today!
       </p>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2">
   {habitsSlice.map((habit, index) => (
     <motion.div
       key={habit._id}

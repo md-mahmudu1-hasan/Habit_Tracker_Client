@@ -9,6 +9,9 @@ import useAuth from '../../Hooks/useAuth'
 import HowCanThisHelp from './HowCanThisHelp'
 import HowWeOperate from './HowWeOperate'
 import FAQ from './FAQ'
+import Highlights from './Highlights'
+import Statistics from './Statistics'
+import Blogs from './Blogs'
 const Home = () => {
 
   const {loading} = useAuth();
@@ -25,6 +28,9 @@ const Home = () => {
         <HowCanThisHelp></HowCanThisHelp>
         <HowWeOperate></HowWeOperate>
         <FAQ></FAQ>
+        <Highlights></Highlights>
+        <Statistics></Statistics>
+        <Blogs></Blogs>
     </div>
   )
 }

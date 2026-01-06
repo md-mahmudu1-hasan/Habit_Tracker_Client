@@ -38,6 +38,9 @@ const DashboardLayout = () => {
 
           {/* Nav */}
           <nav className="p-5 space-y-2">
+            <NavLink to="dashboard/my-profile" className={linkClass}>
+              My Profile
+            </NavLink>
             <NavLink to="dashboard/add-habit" className={linkClass}>
               Add Habit
             </NavLink>

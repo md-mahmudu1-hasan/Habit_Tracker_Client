@@ -25,7 +25,9 @@ const Habit = ({ habit }) => {
         hover:shadow-lg transform hover:-translate-y-1
         transition-all duration-300
         border dark:border-gray-700
-        w-64
+        sm:w-64
+  
+
       "
     >
       {/* Image */}
